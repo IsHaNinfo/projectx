@@ -1,0 +1,96 @@
+
+.sideBarContainer {
+  display: flex;
+}
+
+.main {
+  width: 100%;
+  padding: 20px;
+}
+
+.sideBar {
+  background: #282565;
+  color: aliceblue;
+  height: 100vh;
+  width: 220px;
+  transition: all 0.2s;
+}
+
+.topSection {
+  margin-top: 50px;
+  display: flex;
+  /* align-items: center; */
+  padding: 20px, 15px;
+  height: 90px;
+  margin-bottom: 20px;
+}
+
+.logo {
+  width: 80px;
+  -webkit-filter: invert(100%); /* Safari/Chrome */
+  filter: invert(100%);
+  margin-top: 10px;
+  margin-left: 50px;
+}
+
+.bars {
+  font-size: 25px;
+  display: flex;
+  margin-left: 120px;
+  margin-top: 10px;
+}
+.link {
+  display: flex;
+  font-size: 30px;
+  color: aliceblue;
+  padding: 10px 15px;
+  gap: 15px;
+  transition: all 0.5s;
+}
+
+.active {
+  color: rgb(255, 255, 255);
+  background: #282565;
+  padding: 10px 15px;
+  gap: 15px;
+  transition: all 0.5s;
+  display: flex;
+  font-size: 30px;
+  text-decoration: none;
+
+}
+.noActive {
+  background: #282565;
+  color: rgb(249, 249, 249);
+  padding: 10px 15px;
+  gap: 15px;
+  transition: all 0.5s;
+  display: flex;
+  font-size: 30px;
+  text-decoration: none;
+}
+.noActive:hover {
+  background: hsla(199, 58%, 66%, 0.589);
+}
+
+.icon,
+.link_text {
+  font-size: 20px;
+}
+FaBars {
+  margin-left: 20px;
+}
+
+.ss {
+  color: rgb(43, 223, 100);
+}
+/* .container-fluid,
+.container-lg,
+.container-md,
+.container-sm,
+.container-xl,
+.container-xxl {
+  margin-right: 0px;
+} */
+
+
