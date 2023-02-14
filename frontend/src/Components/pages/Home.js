@@ -7,7 +7,7 @@ const Home = () => {
     <div>
       <Navbar />
 
-      <section id="home">
+      <section id="home" style={{ marginTop: "18px" }}>
         <div className="container">
           <div className="row justify-content-center">
             <div className="col-md-8 mt-5">

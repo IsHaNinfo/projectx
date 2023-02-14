@@ -22,4 +22,5 @@ router.post("/sendpasswordlink", passwordlink);
 router.get("/forgotPassword/:id/:token", forgotpassword);
 
 router.post("/:id/:token", reset);
+
 module.exports = router;

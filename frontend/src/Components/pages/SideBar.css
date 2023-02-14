@@ -1,4 +1,3 @@
-
 .sideBarContainer {
   display: flex;
 }
@@ -8,8 +7,8 @@
   padding: 20px;
 }
 
-.sideBar {
-  background: #282565;
+.sidebar {
+  background-color: #282565;
   color: aliceblue;
   height: 100vh;
   width: 220px;
@@ -57,7 +56,6 @@
   display: flex;
   font-size: 30px;
   text-decoration: none;
-
 }
 .noActive {
   background: #282565;
@@ -92,5 +90,3 @@ FaBars {
 .container-xxl {
   margin-right: 0px;
 } */
-
-

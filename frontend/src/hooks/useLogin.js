@@ -29,7 +29,7 @@ export const useLogin = () => {
     }
     if (response.ok) {
       window.alert("Login success");
-      history("/");
+      history("/Dashboard");
       localStorage.setItem("user", JSON.stringify(json));
 
       dispatch({ type: "LOGIN", payload: json });

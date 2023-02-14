@@ -1,8 +1,12 @@
+import SideBar from "./Sidebar";
+
 const Company = () => {
   return (
-    <div className="pageContainer">
-      <h1>Company</h1>
-    </div>
+    <SideBar>
+      <div className="pageContainer">
+        <h1>Company</h1>
+      </div>
+    </SideBar>
   );
 };
 

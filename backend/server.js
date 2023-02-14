@@ -4,6 +4,8 @@ const mongoose = require("mongoose");
 const express = require("express");
 const cors = require("cors");
 const userRoutes = require("./routes/member");
+const companyRoutes = require("./routes/company");
+const projectRoutes = require("./routes/project");
 const app = express();
 const bodyParser = require("body-parser");
 app.set("view engine", "ejs");
@@ -26,7 +28,8 @@ mongoose.set("strictQuery", true);
 // routes
 
 app.use("/api/user", userRoutes);
-
+app.use("/api/company", companyRoutes);
+app.use("/api/project", projectRoutes);
 // connect to db
 
 mongoose

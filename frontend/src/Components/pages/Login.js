@@ -10,9 +10,6 @@ function Login() {
   const [Error, setError] = useState(false);
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!email.length === 0 || !password.length === 0) {
-      setError(true);
-    }
 
     await login(email, password);
   };
@@ -30,6 +27,13 @@ function Login() {
               className="btn btn-outline-light rounded-pill pb-2 w-50"
             >
               Register
+            </NavLink>
+            <h5 className="mb-4">OR</h5>
+            <NavLink
+              to="/Home"
+              className="btn btn-outline-light rounded-pill pb-2 w-50"
+            >
+              Home
             </NavLink>
           </div>
           <div className="col-md-6 p-5  ">

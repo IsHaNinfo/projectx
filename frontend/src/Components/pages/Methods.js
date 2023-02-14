@@ -7,7 +7,7 @@ const Methods = () => {
       <div className="ShapeA">
         <h2 className="what">What</h2>
         <h2 className="you">you want?</h2>
-        <Link to="/">
+        <Link to="/CreateCompany">
           <button
             class="btn btn-primary"
             style={{

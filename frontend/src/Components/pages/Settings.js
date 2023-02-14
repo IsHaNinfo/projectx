@@ -1,8 +1,12 @@
+import SideBar from "./Sidebar";
+
 const Settings = () => {
   return (
-    <div className="pageContainer">
-      <h1>Settings</h1>
-    </div>
+    <SideBar>
+      <div className="pageContainer">
+        <h1>Settings</h1>
+      </div>
+    </SideBar>
   );
 };
 

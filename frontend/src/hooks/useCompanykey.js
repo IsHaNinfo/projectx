@@ -1,24 +1,23 @@
 import { useState } from "react";
 import { useAuthContext } from "./useAuthContext";
 import { useNavigate } from "react-router-dom";
-export const useSignup = () => {
+
+export const useCompanykey = () => {
+  const history = useNavigate();
+
   const [error, setError] = useState(null);
   const [isLoading, setIsloading] = useState(null);
   const { dispatch } = useAuthContext();
-  const history = useNavigate();
-  const signup = async (email, password, firstname, lastname, jobtitle) => {
+
+  const checkcompany = async (companykey) => {
     setIsloading(true);
     setError(null);
 
-    const response = await fetch("/api/user/signup", {
+    const response = await fetch("/api/company/checkcompany", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        email,
-        password,
-        firstname,
-        lastname,
-        jobtitle,
+        companykey,
       }),
     });
     const json = await response.json();
@@ -28,16 +27,17 @@ export const useSignup = () => {
       setError(json.error);
     }
     if (response.ok) {
+      window.alert("entered your company");
+      history("/");
       localStorage.setItem("user", JSON.stringify(json));
-      history("/Methods");
+
       dispatch({ type: "LOGIN", payload: json });
-      window.alert("Register success");
 
       setIsloading(false);
     }
   };
 
-  return { signup, isLoading, error };
+  return { checkcompany, isLoading, error };
 };
 
-export default useSignup;
+export default useCompanykey;

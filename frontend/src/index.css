@@ -26,3 +26,6 @@
   cursor: pointer;
   box-shadow: 0.5rem 1rem rgba();
 }
+.pageContainer {
+  margin-top: 50px;
+}

@@ -1,8 +1,12 @@
+import SideBar from "./Sidebar";
+
 const Progress = () => {
   return (
-    <div className="pageContainer">
-      <h1>Progress</h1>
-    </div>
+    <SideBar>
+      <div className="pageContainer">
+        <h1>Progress</h1>
+      </div>
+    </SideBar>
   );
 };
 

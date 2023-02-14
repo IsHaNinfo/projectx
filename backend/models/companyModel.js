@@ -17,7 +17,7 @@ const companySchema = new Schema({
     type: String,
     required: true,
   },
-  contactno: {
+  contactnumber: {
     type: Number,
     required: true,
   },
@@ -26,3 +26,72 @@ const companySchema = new Schema({
     required: true,
   },
 });
+
+companySchema.statics.createcompany = async function (
+  companyname,
+  companykey,
+  contactnumber,
+  companyaddress,
+  companyemail
+) {
+  if (
+    !companyname ||
+    !companykey ||
+    !contactnumber ||
+    !companyaddress ||
+    !companyemail
+  ) {
+    throw Error("All fields must be filled ");
+  }
+  function isValidPhoneNumber(contactnumber) {
+    var pattern = /^\d{10}$/;
+    return pattern.test(contactnumber);
+  }
+
+  if (!isValidPhoneNumber(contactnumber)) {
+    throw new Error("company contact number is not valid");
+  }
+  const coname = await this.findOne({ companyname });
+
+  if (coname) {
+    throw new Error("Company name is already taken");
+  }
+  const cokey = await this.findOne({ companykey });
+
+  if (cokey) {
+    throw new Error("Company key is already taken");
+  }
+  function isStrongCompanyKey(companykey) {
+    var pattern =
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#\$%\^&\*])[a-zA-Z\d!@#\$%\^&\*]{8,}$/;
+    return pattern.test(companykey);
+  }
+  if (!isStrongCompanyKey(companykey)) {
+    throw new Error("Invalid company key");
+  }
+  if (!validator.isEmail(companyemail)) {
+    throw Error("company Email not valid");
+  }
+
+  const company = await this.create({
+    companyname,
+    companykey,
+    companyemail,
+    contactnumber,
+    companyaddress,
+  });
+  return company;
+};
+
+companySchema.statics.checkcompany = async function (companykey) {
+  if (!companykey) {
+    throw Error("companykey must be filled ");
+  }
+  const key = await this.findOne({ companykey });
+  if (!key) {
+    throw Error("companykey is incorrect");
+  }
+  return key;
+};
+
+module.exports = mongoose.model("Company", companySchema);
