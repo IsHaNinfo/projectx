@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "./passwordChange.css";
-import { useNavigate } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 const PasswordChange = () => {
   const [email, setEmail] = useState("");
   const [message, setmessage] = useState("");
@@ -58,11 +58,11 @@ const PasswordChange = () => {
             </button>
           </form>
           <ToastContainer />
+          <NavLink to="/" className="log" style={{ textDecoration: "none" }}>
+            Back to Login
+          </NavLink>
         </div>
       </section>
-      <a className="relogin" style={{ fontSize: "25px" }}>
-        Back to Login
-      </a>
     </div>
   );
 };

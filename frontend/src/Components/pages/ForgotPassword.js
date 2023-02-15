@@ -37,6 +37,8 @@ const ForgotPassword = () => {
     if (data.status === 201) {
       setPassword("");
       setMessage(true);
+      history("/");
+      window.alert("password reset successfully");
     } else {
       toast.error("!Token Expired generate new Link");
     }

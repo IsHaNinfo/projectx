@@ -28,7 +28,7 @@ export const useCompanykey = () => {
     }
     if (response.ok) {
       window.alert("entered your company");
-      history("/");
+      history("/Dashboard");
       localStorage.setItem("user", JSON.stringify(json));
 
       dispatch({ type: "LOGIN", payload: json });

@@ -11,7 +11,7 @@ const Register = () => {
   const [confirmpassword, setconfirmpassword] = useState("");
   const [jobtitle, setjobtitle] = useState("");
   const { signup, isLoading, error } = useSignup();
-  const [Error, setError] = useState(false);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -34,7 +34,7 @@ const Register = () => {
             <p className="lead text-center">Enter your Details to register</p>
             <h5 className="mb-4">OR</h5>
             <NavLink
-              to="/login"
+              to="/"
               className="btn btn-outline-light rounded-pill pb-2 w-50"
             >
               Login

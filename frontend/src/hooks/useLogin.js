@@ -28,7 +28,6 @@ export const useLogin = () => {
       setError(json.error);
     }
     if (response.ok) {
-      window.alert("Login success");
       history("/Dashboard");
       localStorage.setItem("user", JSON.stringify(json));
 

@@ -8,8 +8,8 @@
 }
 
 .sidebar {
-  background-color: #282565;
-  color: aliceblue;
+  background-color: #075d88;
+  color: rgb(245, 245, 246);
   height: 100vh;
   width: 220px;
   transition: all 0.2s;
@@ -41,7 +41,7 @@
 .link {
   display: flex;
   font-size: 30px;
-  color: aliceblue;
+  color: rgb(18, 106, 183);
   padding: 10px 15px;
   gap: 15px;
   transition: all 0.5s;
@@ -49,7 +49,7 @@
 
 .active {
   color: rgb(255, 255, 255);
-  background: #282565;
+  background: #075d88;
   padding: 10px 15px;
   gap: 15px;
   transition: all 0.5s;
@@ -58,7 +58,7 @@
   text-decoration: none;
 }
 .noActive {
-  background: #282565;
+  background: #075d88;
   color: rgb(249, 249, 249);
   padding: 10px 15px;
   gap: 15px;

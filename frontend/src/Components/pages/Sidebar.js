@@ -56,7 +56,7 @@ const Sidebar = ({ children }) => {
         collapseOnSelect
         expand="lg"
         variant="dark"
-        style={{ backgroundColor: "#282565" }}
+        style={{ backgroundColor: "#075d88" }}
         fixed="top"
       >
         <Container>

@@ -15,13 +15,14 @@ import Settings from "./Components/pages/Settings";
 import Chatroom from "./Components/pages/Chatroom";
 import Company from "./Components/pages/Company";
 import Dashboard from "./Components/pages/Dashboard";
+
 function App() {
   return (
     <div className="App">
       <BrowserRouter>
         <Routes>
           <Route exact path="/Home" element={<Home />} />
-          <Route path="/login" element={<Login />} />
+          <Route path="/" element={<Login />} />
           <Route path="/Register" element={<Register />} />
 
           <Route
