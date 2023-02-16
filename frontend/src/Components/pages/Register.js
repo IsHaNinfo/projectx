@@ -111,11 +111,7 @@ const Register = () => {
                     value={confirmpassword}
                   />
                 </div>
-                {Error && password.length <= 0 ? (
-                  <div className="error"> confirm password is not match</div>
-                ) : (
-                  ""
-                )}
+
                 <div className="mb-3">
                   <label htmlFor="jobtitle" className="form-label">
                     Jobtitle{" "}

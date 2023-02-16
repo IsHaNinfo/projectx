@@ -1,9 +1,12 @@
 import SideBar from "./Sidebar";
-
+import CircleProgress from "./progress/CircleProgress";
 const Progress = () => {
   return (
     <div>
-      <SideBar>Progress</SideBar>;
+      <SideBar>
+        <CircleProgress />
+      </SideBar>
+      ;
     </div>
   );
 };

@@ -26,7 +26,11 @@ const Navbar = () => {
             <span className="navbar-toggler-icon"></span>
           </button>
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
-            <a className="navbar-brand  fs-1 mx-auto mb-0 mb-0 " href="#">
+            <a
+              className="navbar-brand  fs-1 mx-auto mb-0 mb-0 "
+              href="#"
+              alt="#"
+            >
               HasthiyaIT
             </a>
             <div>

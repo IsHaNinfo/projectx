@@ -13,7 +13,7 @@ const Createproject = (props) => {
     history("/Company");
     setShow(false);
   };
-  const handleShow = () => setShow(true);
+
   const [projectname, setprojectname] = useState("");
   const [description, setdescription] = useState("");
   const [startDate, setstartDate] = useState("");

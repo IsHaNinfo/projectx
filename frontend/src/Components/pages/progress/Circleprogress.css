@@ -1,0 +1,50 @@
+.pname {
+  font-size: 25px;
+  font-weight: bold;
+  font-family: "Signika Negative", sans-serif;
+  color: rgb(102, 102, 101);
+  text-align: center;
+  margin-left: 130px;
+  letter-spacing: 0.1rem;
+}
+.circle1 {
+  width: 300px;
+  height: 300px;
+  margin-left: 5%;
+  margin-top: 0%;
+}
+
+.circle2 {
+  position: absolute !important;
+  width: 100px;
+  height: 200px;
+  margin-left: 2%;
+  margin-top: 5%;
+}
+
+.circle3 {
+  position: absolute !important;
+  width: 100px;
+  height: 200px;
+  margin-left: 1%;
+  margin-top: 5%;
+}
+.pname2 {
+  font-size: 22px;
+  font-weight: bold;
+  font-family: "Signika Negative", sans-serif;
+  color: rgb(102, 102, 101);
+  text-align: left;
+  margin-left: 80px;
+  letter-spacing: 0.1rem;
+}
+
+.pname3 {
+  font-size: 22px;
+  font-weight: bold;
+  font-family: "Signika Negative", sans-serif;
+  color: rgb(102, 102, 101);
+  text-align: left;
+  margin-left: 80px;
+  letter-spacing: 0.1rem;
+}

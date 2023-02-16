@@ -7,7 +7,7 @@ function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { login, error, isLoading } = useLogin();
-  const [Error, setError] = useState(false);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -52,11 +52,7 @@ function Login() {
                     value={email}
                   />
                 </div>
-                {Error && email.length <= 0 ? (
-                  <div className="error"> Email can't be Empty</div>
-                ) : (
-                  ""
-                )}
+
                 <div class="mb-3 w-75">
                   <label htmlFor="exampleInputPassword1" className="form-label">
                     Password
@@ -69,11 +65,7 @@ function Login() {
                     value={password}
                   />
                 </div>
-                {Error && password.length <= 0 ? (
-                  <div className="error"> password can't be Empty</div>
-                ) : (
-                  ""
-                )}
+
                 <div className="mb-6 form-check">
                   <input
                     type="checkbox"
