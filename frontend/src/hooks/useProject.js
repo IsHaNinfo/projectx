@@ -1,11 +1,11 @@
 import { useState } from "react";
-import { useProjectContext } from "./useProjectContext";
+import { useAuthContext } from "./useAuthContext";
 import { useNavigate } from "react-router-dom";
 export const useProject = () => {
   const history = useNavigate();
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(null);
-  const { dispatch } = useProjectContext();
+  const { dispatch } = useAuthContext();
 
   const project = async (projectname, description, startDate, endDate) => {
     setIsLoading(true);
@@ -25,9 +25,9 @@ export const useProject = () => {
     }
     if (response.ok) {
       history("/Dashboard");
-      localStorage.setItem("project", JSON.stringify(json));
+      localStorage.setItem("user", JSON.stringify(json));
 
-      dispatch({ type: "createproject", payload: json });
+      dispatch({ type: "LOGIN", payload: json });
 
       setIsLoading(false);
     }

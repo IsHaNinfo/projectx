@@ -14,12 +14,14 @@ import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import { useLogout } from "../../hooks/useLogout";
 import "./SideBar.css";
+import { useAuthContext } from "../../hooks/useAuthContext";
 
 const Sidebar = ({ children }) => {
   const [open, SetOpen] = useState(false);
 
   const toggle = () => SetOpen(!open);
   const { logout } = useLogout();
+  const { user } = useAuthContext();
   const handleClick = () => {
     logout();
   };
@@ -87,12 +89,14 @@ const Sidebar = ({ children }) => {
                 </NavDropdown.Item>
               </NavDropdown>
             </Nav>
-            <div className="ss">
-              profile picture
-              <button className="logout" onClick={handleClick}>
-                Logout
-              </button>
-            </div>
+            {user && (
+              <div className="ss">
+                <span>{user.email}</span>
+                <button className="logout" onClick={handleClick}>
+                  Logout
+                </button>
+              </div>
+            )}
           </Navbar.Collapse>
         </Container>
       </Navbar>

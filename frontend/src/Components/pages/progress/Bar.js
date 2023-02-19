@@ -1,9 +1,9 @@
 import React from "react";
 import ProgressBar from "react-bootstrap/ProgressBar";
-
+import "./Bar.css";
 const Bar = ({ progress }) => {
-  const radius = 60;
-  const stroke = 5;
+  const radius = 90;
+  const stroke = 12;
   const circumference = 2 * Math.PI * (radius - stroke);
   const offset = circumference - (progress / 100) * circumference;
 
@@ -43,6 +43,16 @@ const Bar = ({ progress }) => {
           strokeDashoffset={offset}
           fill="none"
         />
+        <text
+          x="50%"
+          y="50%"
+          dy="0.3em"
+          textAnchor="middle"
+          className="circle-text"
+          fil="url(#gradient)"
+        >
+          {progress}%
+        </text>
       </svg>
     </ProgressBar>
   );

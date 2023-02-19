@@ -36,7 +36,7 @@ const loginUser = async (req, res) => {
 
 // signup a user
 const signupUser = async (req, res) => {
-  const { email, password, firstname, lastname, jobtitle } = req.body;
+  const { email, password, firstname, lastname, selectedJob } = req.body;
 
   try {
     const user = await User.signup(
@@ -44,7 +44,7 @@ const signupUser = async (req, res) => {
       password,
       firstname,
       lastname,
-      jobtitle
+      selectedJob
     );
 
     // create a token

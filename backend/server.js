@@ -8,7 +8,7 @@ const companyRoutes = require("./routes/company");
 const projectRoutes = require("./routes/project");
 const app = express();
 const bodyParser = require("body-parser");
-app.set("view engine", "ejs");
+
 app.use(bodyParser.json());
 app.use(express.urlencoded({ extended: false }));
 var nodemailer = require("nodemailer");

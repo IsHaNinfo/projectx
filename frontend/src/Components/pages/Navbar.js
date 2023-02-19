@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 const Navbar = () => {
   const history = useNavigate();
   const sendl = () => {
-    history("/login");
+    history("/");
   };
 
   const sendR = () => {

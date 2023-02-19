@@ -1,33 +1,33 @@
-.pname {
-  font-size: 25px;
-  font-weight: bold;
-  font-family: "Signika Negative", sans-serif;
-  color: rgb(102, 102, 101);
-  text-align: center;
-  margin-left: 130px;
-  letter-spacing: 0.1rem;
-}
 .circle1 {
   width: 300px;
   height: 300px;
-  margin-left: 5%;
-  margin-top: 0%;
+  margin-left: 25%;
+  margin-top: 10%;
+}
+
+.pname {
+  font-size: 22px;
+  font-weight: bold;
+  font-family: "Signika Negative", sans-serif;
+  color: rgb(102, 102, 101);
+  text-align: left;
+  margin-left: 70px;
+  margin-bottom: 15%;
+  letter-spacing: 0.1rem;
 }
 
 .circle2 {
-  position: absolute !important;
-  width: 100px;
-  height: 200px;
-  margin-left: 2%;
-  margin-top: 5%;
+  width: 300px;
+  height: 300px;
+  margin-left: 25%;
+  margin-top: 10%;
 }
 
 .circle3 {
-  position: absolute !important;
-  width: 100px;
-  height: 200px;
-  margin-left: 1%;
-  margin-top: 5%;
+  width: 300px;
+  height: 300px;
+  margin-left: 25%;
+  margin-top: 10%;
 }
 .pname2 {
   font-size: 22px;
@@ -35,7 +35,8 @@
   font-family: "Signika Negative", sans-serif;
   color: rgb(102, 102, 101);
   text-align: left;
-  margin-left: 80px;
+  margin-left: 20px;
+  margin-bottom: 15%;
   letter-spacing: 0.1rem;
 }
 
@@ -45,6 +46,7 @@
   font-family: "Signika Negative", sans-serif;
   color: rgb(102, 102, 101);
   text-align: left;
-  margin-left: 80px;
+  margin-left: 20px;
+  margin-bottom: 15%;
   letter-spacing: 0.1rem;
 }

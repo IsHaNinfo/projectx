@@ -2,6 +2,7 @@ import { NavLink } from "react-router-dom";
 import React, { useState } from "react";
 import "./Register.css";
 import useSignup from "../../hooks/useSignup";
+import { Dropdown } from "react-bootstrap";
 
 const Register = () => {
   const [firstname, setfirstname] = useState("");
@@ -9,7 +10,8 @@ const Register = () => {
   const [email, setemail] = useState("");
   const [password, setpassword] = useState("");
   const [confirmpassword, setconfirmpassword] = useState("");
-  const [jobtitle, setjobtitle] = useState("");
+  const options = ["System admin", "Developer", "Team lead", "Project manager"];
+  const [selectedJob, setSelectedJob] = useState("");
   const { signup, isLoading, error } = useSignup();
 
   const handleSubmit = async (e) => {
@@ -21,8 +23,12 @@ const Register = () => {
       firstname,
       lastname,
       confirmpassword,
-      jobtitle
+      selectedJob
     );
+  };
+
+  const handleOptionChange = (eventKey) => {
+    setSelectedJob(options[eventKey]);
   };
 
   return (
@@ -114,15 +120,23 @@ const Register = () => {
 
                 <div className="mb-3">
                   <label htmlFor="jobtitle" className="form-label">
-                    Jobtitle{" "}
+                    Jobtitle
                   </label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    id="password"
-                    onChange={(e) => setjobtitle(e.target.value)}
-                    value={jobtitle}
-                  />
+                  <Dropdown onSelect={handleOptionChange}>
+                    <Dropdown.Toggle variant="primary" id="dropdown-basic">
+                      Select an option
+                    </Dropdown.Toggle>
+
+                    <Dropdown.Menu>
+                      {options.map((option, index) => (
+                        <Dropdown.Item eventKey={index} key={option}>
+                          {option}
+                        </Dropdown.Item>
+                      ))}
+                    </Dropdown.Menu>
+
+                    {selectedJob && <div>You selected: {selectedJob}</div>}
+                  </Dropdown>
                 </div>
                 <div className="mb-3 form-check">
                   <input

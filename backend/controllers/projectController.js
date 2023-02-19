@@ -1,6 +1,7 @@
 const Project = require("../models/projectmodel");
 const jwt = require("jsonwebtoken");
 const express = require("express");
+const moment = require("moment");
 const app = express();
 
 const createToken = (_id) => {
@@ -23,6 +24,16 @@ const project = async (req, res) => {
   }
 };
 
+const changepersentage = async (req, res) => {
+  const { startDate, endDate } = req.body;
+  const totalMilliseconds = moment(endDate).diff(startDate);
+  const remainingMilliseconds = moment(endDate).diff(moment());
+  const percentage =
+    Math.round((remainingMilliseconds / totalMilliseconds) * 100 * 100) / 100;
+
+  res.status(200).json({ percentage });
+};
 module.exports = {
   project,
+  changepersentage,
 };
