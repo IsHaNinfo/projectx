@@ -65,19 +65,6 @@ const Sidebar = ({ children }) => {
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="me-auto">
-              <NavDropdown title="Projects" id="collasible-nav-dropdown">
-                <NavDropdown.Item href="#action/3.1">
-                  Project 01
-                </NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.3">
-                  Project 02
-                </NavDropdown.Item>
-                <NavDropdown.Divider />
-                <NavDropdown.Item href="./Createproject">
-                  Add project
-                </NavDropdown.Item>
-              </NavDropdown>
-
               <NavDropdown title="Members" id="collasible-nav-dropdown">
                 <NavDropdown.Item href="#action/3.1">member 1</NavDropdown.Item>
                 <NavDropdown.Item href="#action/3.3">member 2</NavDropdown.Item>

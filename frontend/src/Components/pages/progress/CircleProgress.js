@@ -9,8 +9,8 @@ function CircleProgress() {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        startDate: "2022-01-15",
-        endDate: "2023-10-05",
+        startDate: "2023-02-20",
+        endDate: "2023-02-22",
       }),
     });
     const data = await res.json();

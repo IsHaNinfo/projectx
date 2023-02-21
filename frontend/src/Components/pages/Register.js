@@ -22,7 +22,7 @@ const Register = () => {
       password,
       firstname,
       lastname,
-      confirmpassword,
+
       selectedJob
     );
   };
@@ -138,16 +138,7 @@ const Register = () => {
                     {selectedJob && <div>You selected: {selectedJob}</div>}
                   </Dropdown>
                 </div>
-                <div className="mb-3 form-check">
-                  <input
-                    type="checkbox"
-                    className="form-check-input"
-                    id="exampleCheck1"
-                  />
-                  <label className="form-check-label" htmlFor="exampleCheck1">
-                    I Agree Terms and Conditions
-                  </label>
-                </div>
+
                 <button
                   type="submit"
                   className="btn btn-outline-primary w-100 mt-4 rounded-pill"

@@ -28,9 +28,17 @@ export const useLogin = () => {
       setError(json.error);
     }
     if (response.ok) {
-      history("/Dashboard");
       localStorage.setItem("user", JSON.stringify(json));
-
+      if (json.selectedJob === "System admin") {
+        history("/Company");
+      }
+      if (
+        json.selectedJob === "Developer" ||
+        json.selectedJob === "Team lead" ||
+        json.selectedJob === "Project manager"
+      ) {
+        history("/Dashboard");
+      }
       dispatch({ type: "LOGIN", payload: json });
 
       setIsloading(false);

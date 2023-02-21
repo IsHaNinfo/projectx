@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
-import { useProject } from "../../hooks/useProject";
+
 import { useNavigate } from "react-router-dom";
 import "./Project.css";
 const Createproject = (props) => {
@@ -18,12 +18,34 @@ const Createproject = (props) => {
   const [description, setdescription] = useState("");
   const [startDate, setstartDate] = useState("");
   const [endDate, setendDate] = useState("");
-  const { project, error, isLoading } = useProject();
+  const [error, setError] = useState(null);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    await project(projectname, description, startDate, endDate);
+    const project = { projectname, description, startDate, endDate };
+
+    const response = await fetch("/api/project/creatproject", {
+      method: "POST",
+      body: JSON.stringify(project),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    const json = await response.json();
+
+    if (!response.ok) {
+      setError(json.error);
+    }
+    if (response.ok) {
+      history("/Dashboard");
+      setprojectname("");
+      setstartDate("");
+      setendDate("");
+
+      setError(null);
+      console.log("new project created", json);
+    }
   };
 
   return (
@@ -86,7 +108,7 @@ const Createproject = (props) => {
           <Button variant="secondary" onClick={handleClose}>
             Close
           </Button>
-          <Button disabled={isLoading} variant="primary" onClick={handleSubmit}>
+          <Button variant="primary" onClick={handleSubmit}>
             Create Project
           </Button>
           {error && (
