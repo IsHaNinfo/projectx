@@ -1,6 +1,6 @@
 import { NavLink } from "react-router-dom";
 import React, { useState } from "react";
-import useCreateCompany from "../../hooks/useCreateCompany";
+import useCreateCompany from "../../../hooks/useCreateCompany";
 const CreateCompany = () => {
   const [companyname, setcompanyname] = useState("");
   const [companyemail, setcompanyemail] = useState("");
@@ -75,7 +75,7 @@ const CreateCompany = () => {
                     Company key
                   </label>
                   <input
-                    type="text"
+                    type="password"
                     className="form-control"
                     id="companykey"
                     onChange={(e) => setcompanykey(e.target.value)}

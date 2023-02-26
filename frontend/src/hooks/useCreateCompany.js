@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useAuthContext } from "./useAuthContext";
+import { useCompanyContext } from "./useCompanyContext";
 import { useNavigate } from "react-router-dom";
 
 export const useCreateCompany = () => {
@@ -7,7 +7,7 @@ export const useCreateCompany = () => {
 
   const [error, setError] = useState(null);
   const [isLoading, setIsloading] = useState(null);
-  const { dispatch } = useAuthContext();
+  const { dispatch } = useCompanyContext();
 
   const createcompany = async (
     companyemail,
@@ -39,9 +39,9 @@ export const useCreateCompany = () => {
     if (response.ok) {
       window.alert("Company create success");
       history("/");
-      localStorage.setItem("user", JSON.stringify(json));
+      localStorage.setItem("Company", JSON.stringify(json));
 
-      dispatch({ type: "LOGIN", payload: json });
+      dispatch({ type: "COMPANY_CREATE", payload: json });
 
       setIsloading(false);
     }

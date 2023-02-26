@@ -10,7 +10,7 @@ const Register = () => {
   const [email, setemail] = useState("");
   const [password, setpassword] = useState("");
   const [confirmpassword, setconfirmpassword] = useState("");
-  const options = ["System admin", "Developer", "Team lead", "Project manager"];
+  const options = ["SYSTEM ADMIN", "DEVELOPER", "TEAM LEAD", "PROJECT MANAGER"];
   const [selectedJob, setSelectedJob] = useState("");
   const { signup, isLoading, error } = useSignup();
 

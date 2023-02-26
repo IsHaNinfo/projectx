@@ -5,6 +5,7 @@ import { NavLink } from "react-router-dom";
 const PasswordChange = () => {
   const [email, setEmail] = useState("");
   const [message, setmessage] = useState("");
+  const [error, setError] = useState(null);
   const setVal = (e) => {
     setEmail(e.target.value);
   };
@@ -23,7 +24,7 @@ const PasswordChange = () => {
       setEmail("");
       setmessage(true);
     } else {
-      toast.error("Invalid email");
+      setError(data.error);
     }
   };
   return (
@@ -57,7 +58,8 @@ const PasswordChange = () => {
               send
             </button>
           </form>
-          <ToastContainer />
+          {error && <div className="errors">{error}</div>}
+
           <NavLink to="/" className="log" style={{ textDecoration: "none" }}>
             Back to Login
           </NavLink>

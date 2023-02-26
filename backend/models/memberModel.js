@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
 const validator = require("validator");
-
+const { Jobes } = require("../util/Constants");
 const Schema = mongoose.Schema;
 
 const userSchema = new Schema({
@@ -23,7 +23,12 @@ const userSchema = new Schema({
   },
   selectedJob: {
     type: String,
-    required: true,
+    enum: [
+      Jobes.SystemAdmin,
+      Jobes.Projectmanager,
+      Jobes.Developer,
+      Jobes.TeamLead,
+    ],
   },
   tokens: [
     {
@@ -103,6 +108,7 @@ userSchema.statics.forget = async function (email) {
   if (!email) {
     throw Error("Email must be filled");
   }
+
   if (!validator.isEmail(email)) {
     throw Error("Email not valid");
   }

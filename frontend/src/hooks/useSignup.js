@@ -31,13 +31,13 @@ export const useSignup = () => {
     }
     if (response.ok) {
       localStorage.setItem("user", JSON.stringify(json));
-      if (json.selectedJob === "System admin") {
+      if (json.selectedJob === "SYSTEM ADMIN") {
         history("/CreateCompany");
       }
       if (
-        json.selectedJob === "Developer" ||
-        json.selectedJob === "Team lead" ||
-        json.selectedJob === "Project manager"
+        json.selectedJob === "DEVELOPER" ||
+        json.selectedJob === "TEAM LEAD" ||
+        json.selectedJob === "PROJECT MANAGER"
       ) {
         history("/EnterCompany");
       }

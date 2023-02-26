@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 import "./EnterCompany.css";
 
-import useCompanykey from "../../hooks/useCompanykey";
+import useCompanykey from "../../../hooks/useCompanykey";
 function EnterCompany() {
   const [companykey, setCompanykey] = useState("");
   const { checkcompany, isLoading, error } = useCompanykey();

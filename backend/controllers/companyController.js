@@ -1,8 +1,10 @@
 const Company = require("../models/companyModel");
+const User = require("../models/memberModel");
 const jwt = require("jsonwebtoken");
 const createToken = (_id) => {
   return jwt.sign({ _id }, process.env.SECRET, { expiresIn: "3d" });
 };
+
 const createCompany = async (req, res) => {
   const {
     companyname,
@@ -21,8 +23,7 @@ const createCompany = async (req, res) => {
       companyemail
     );
 
-    const token = createToken(company._id);
-    res.status(200).json({ company, token });
+    res.status(200).json({ company, companyname, token });
   } catch (error) {
     res.status(400).json({ error: error.message });
   }

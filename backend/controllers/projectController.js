@@ -3,25 +3,26 @@ const jwt = require("jsonwebtoken");
 const express = require("express");
 const moment = require("moment");
 const mongoose = require("mongoose");
+const User = require("../models/memberModel");
 const app = express();
-
 //create a new project
 const createToken = (_id) => {
   return jwt.sign({ _id }, process.env.SECRET, { expiresIn: "3d" });
 };
-
 const project = async (req, res) => {
   const { projectname, description, startDate, endDate } = req.body;
 
   try {
+    const user_id = req.user._id;
     const project = await Project.createproject(
       projectname,
       description,
       startDate,
-      endDate
+      endDate,
+      user_id
     );
-
-    res.status(200).json({ project });
+    const token = createToken(project._id);
+    res.status(200).json({ project, token, projectname: project.projectname });
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
@@ -30,8 +31,8 @@ const project = async (req, res) => {
 //get all projects
 const getProjects = async (req, res) => {
   const projects = await Project.find({}).sort({ createdAt: -1 });
-
-  res.status(200).json({ projects });
+  const token = createToken(project._id);
+  res.status(200).json({ projects, projectname: projects.projectname });
 };
 //get single project
 

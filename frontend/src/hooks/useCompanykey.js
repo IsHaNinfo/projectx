@@ -1,13 +1,15 @@
 import { useState } from "react";
-import { useAuthContext } from "./useAuthContext";
+import { useCompanyContext } from "./useCompanyContext";
 import { useNavigate } from "react-router-dom";
+import { useAuthContext } from "./../hooks/useAuthContext";
 
 export const useCompanykey = () => {
   const history = useNavigate();
 
   const [error, setError] = useState(null);
   const [isLoading, setIsloading] = useState(null);
-  const { dispatch } = useAuthContext();
+  const { dispatch } = useCompanyContext();
+  const { user } = useAuthContext();
 
   const checkcompany = async (companykey) => {
     setIsloading(true);
@@ -15,7 +17,10 @@ export const useCompanykey = () => {
 
     const response = await fetch("/api/company/checkcompany", {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${user.token}`,
+      },
       body: JSON.stringify({
         companykey,
       }),
@@ -29,14 +34,16 @@ export const useCompanykey = () => {
     if (response.ok) {
       window.alert("entered your company");
       history("/Dashboard");
-      localStorage.setItem("user", JSON.stringify(json));
+      localStorage.setItem("Company", JSON.stringify(json));
 
-      dispatch({ type: "LOGIN", payload: json });
+      dispatch({ type: "COMPANY_KEY", payload: json });
 
       setIsloading(false);
     }
   };
-
+  if (user) {
+    checkcompany();
+  }
   return { checkcompany, isLoading, error };
 };
 

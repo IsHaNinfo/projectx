@@ -2,27 +2,32 @@ import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
-
+import { useProjectContext } from "../../hooks/useProjectContext";
 import { useNavigate } from "react-router-dom";
+import { useAuthContext } from "../../hooks/useAuthContext";
+
 import "./Project.css";
 const Createproject = (props) => {
   const [show, setShow] = useState(true);
-
+  const { user } = useAuthContext();
   const history = useNavigate();
   const handleClose = () => {
     history("/Company");
     setShow(false);
   };
-
+  const { dispatch } = useProjectContext();
   const [projectname, setprojectname] = useState("");
   const [description, setdescription] = useState("");
   const [startDate, setstartDate] = useState("");
   const [endDate, setendDate] = useState("");
   const [error, setError] = useState(null);
-
+  const [showContent, setShowContent] = useState(false);
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    if (!user) {
+      setError("you must be logged in");
+      return;
+    }
     const project = { projectname, description, startDate, endDate };
 
     const response = await fetch("/api/project/creatproject", {
@@ -30,6 +35,7 @@ const Createproject = (props) => {
       body: JSON.stringify(project),
       headers: {
         "Content-Type": "application/json",
+        Authorization: `Bearer ${user.token}`,
       },
     });
     const json = await response.json();
@@ -42,12 +48,16 @@ const Createproject = (props) => {
       setprojectname("");
       setstartDate("");
       setendDate("");
-
+      setdescription("");
       setError(null);
       console.log("new project created", json);
+      dispatch({ type: "CREATE_PROJECT", payload: json });
     }
   };
 
+  const handleTickClick = () => {
+    setShowContent(!showContent);
+  };
   return (
     <>
       <Modal show={show} onHide={handleClose}>
@@ -83,25 +93,49 @@ const Createproject = (props) => {
                 value={description}
               />
             </Form.Group>
-
-            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-              <Form.Label style={{ fontWeight: "bold" }}>Start Date</Form.Label>
-              <Form.Control
-                type="date"
-                autoFocus
-                onChange={(e) => setstartDate(e.target.value)}
-                value={startDate}
+            <div className="mb-6 form-check">
+              <input
+                type="checkbox"
+                className="form-check-input"
+                id="exampleCheck1"
+                onClick={handleTickClick}
               />
-            </Form.Group>
-            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-              <Form.Label style={{ fontWeight: "bold" }}>End Date</Form.Label>
-              <Form.Control
-                type="date"
-                autoFocus
-                onChange={(e) => setendDate(e.target.value)}
-                value={endDate}
-              />
-            </Form.Group>
+              <label className="form-check-label" htmlFor="exampleCheck1">
+                If you need to add date
+              </label>
+            </div>
+            {showContent ? (
+              <div>
+                <Form.Group
+                  className="mb-3"
+                  controlId="exampleForm.ControlInput1"
+                >
+                  <Form.Label style={{ fontWeight: "bold" }}>
+                    Start Date
+                  </Form.Label>
+                  <Form.Control
+                    type="date"
+                    autoFocus
+                    onChange={(e) => setstartDate(e.target.value)}
+                    value={startDate}
+                  />
+                </Form.Group>
+                <Form.Group
+                  className="mb-3"
+                  controlId="exampleForm.ControlInput1"
+                >
+                  <Form.Label style={{ fontWeight: "bold" }}>
+                    End Date
+                  </Form.Label>
+                  <Form.Control
+                    type="date"
+                    autoFocus
+                    onChange={(e) => setendDate(e.target.value)}
+                    value={endDate}
+                  />
+                </Form.Group>
+              </div>
+            ) : null}
           </Form>
         </Modal.Body>
         <Modal.Footer>

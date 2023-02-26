@@ -7,6 +7,9 @@ import {
   FaCity,
   FaThLarge,
 } from "react-icons/fa";
+import { CgProfile } from "react-icons/cg";
+import { AiOutlineLogout } from "react-icons/ai";
+import { MdSettingsSuggest } from "react-icons/md";
 import { NavLink } from "react-router-dom";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
@@ -15,6 +18,7 @@ import NavDropdown from "react-bootstrap/NavDropdown";
 import { useLogout } from "../../hooks/useLogout";
 import "./SideBar.css";
 import { useAuthContext } from "../../hooks/useAuthContext";
+import { useCompanyContext } from "../../hooks/useCompanyContext";
 
 const Sidebar = ({ children }) => {
   const [open, SetOpen] = useState(false);
@@ -22,9 +26,15 @@ const Sidebar = ({ children }) => {
   const toggle = () => SetOpen(!open);
   const { logout } = useLogout();
   const { user } = useAuthContext();
+  const { company } = useCompanyContext;
   const handleClick = () => {
     logout();
   };
+
+  let subMenu = document.getElementById("subMenu");
+  function toggleMenu() {
+    subMenu.classList.toggle("open-menu");
+  }
   const menuItem = [
     {
       path: "/Company",
@@ -48,7 +58,7 @@ const Sidebar = ({ children }) => {
     },
     {
       path: "/Settings",
-      name: "settings",
+      name: "Settings",
       icon: <FaCog />,
     },
   ];
@@ -76,14 +86,31 @@ const Sidebar = ({ children }) => {
                 </NavDropdown.Item>
               </NavDropdown>
             </Nav>
-            {user && (
-              <div className="ss">
-                <span>{user.email}</span>
-                <button className="logout" onClick={handleClick}>
-                  Logout
-                </button>
-              </div>
-            )}
+            <div>
+              <MdSettingsSuggest className="set-pic" onClick={toggleMenu} />
+            </div>
+            <div className="sub-menu-wrap" id="subMenu">
+              {user && (
+                <div className="sub-menu">
+                  <div>
+                    <h5>{user.email}</h5>
+                    <h5> {user.selectedJob}</h5>
+                  </div>
+                  <hr />
+                  <a href="#" className="sub-menu-link">
+                    <CgProfile className="profile" />
+                    <p>Edit Profile</p>
+                    <span></span>
+                  </a>
+                  <hr />
+                  <a href="#" className="sub-menu-link" onClick={handleClick}>
+                    <AiOutlineLogout className="profile" />
+                    <p>LogOut</p>
+                    <span></span>
+                  </a>
+                </div>
+              )}
+            </div>
           </Navbar.Collapse>
         </Container>
       </Navbar>

@@ -55,109 +55,13 @@ const signupUser = async (req, res) => {
     res.status(400).json({ error: error.message });
   }
 };
-/*
-const forgetPassword = async (req, res) => {
-  const { email } = req.body;
 
-  try {
-    const user = await User.forget(email);
-
-    oldUser = await User.findOne({ email });
-    if (!oldUser) {
-      return res.status(404).json({ message: "User not found" });
-    }
-    const secret = process.env.SECRET + oldUser.password;
-    const token = jwt.sign({ email: oldUser.email, id: oldUser.id }, secret, {
-      expiresIn: "1d",
-    });
-
-    const link = `http://localhost:4000/api/user/resetPassword/${oldUser._id}/${token}`;
-    var transporter = nodemailer.createTransport({
-      service: "gmail",
-      auth: {
-        user: "lenzzhasthiyit@gmail.com",
-        pass: "mfmpeqgzbjbxkcja",
-      },
-    });
-
-    var mailOptions = {
-      from: "youremail@gmail.com",
-      to: "ishaninfo56@gmail.com",
-      subject: "password reset",
-      text: link,
-    };
-
-    transporter.sendMail(mailOptions, function (error, info) {
-      if (error) {
-        console.log(error);
-      } else {
-        console.log("Email sent: " + info.response);
-      }
-    });
-    console.log(link);
-  } catch (error) {
-    res.status(400).json({ error: error.message });
-  }
-};
-
-const resetPassword = async (req, res) => {
-  const { id, token } = req.params;
-  console.log(req.params);
-  const Olduser = await User.findOne({ _id: id });
-  if (!Olduser) {
-    return res.json({ status: "User Not Exists" });
-  }
-  const secret = process.env.SECRET + Olduser.password;
-  try {
-    const verify = jwt.verify(token, secret);
-    res.render("index", { email: verify.email, status: " verified" });
-  } catch (error) {
-    console.log(error);
-    res.send("not verified");
-  }
-};
-
-const ResetPassword = async (req, res) => {
-  const { id, token } = req.params;
-  const { password } = req.body;
-
-  console.log(req.params);
-  const user = await User.findOne({ _id: id });
-  if (!user) {
-    return res.json({ status: "User Not Exists" });
-  }
-  const secret = process.env.SECRET + user.password;
-  try {
-    const verify = jwt.verify(token, secret);
-    const encryptedPassword = await bcrypt.hash(password, 10);
-    await User.updateOne(
-      {
-        _id: id,
-      },
-      {
-        $set: {
-          password: encryptedPassword,
-        },
-      }
-    );
-    res.render("index", { email: verify.email, status: "verified" });
-  } catch (error) {
-    console.log(error);
-    res.send("Something went wrong");
-  }
-};
-*/
 const passwordlink = async (req, res) => {
-  console.log(req.body);
   const { email } = req.body;
-
-  if (!email) {
-    res.status(401).json({ status: 401, message: "Enter your Email" });
-  }
 
   try {
     const user = await User.forget(email);
-    const userfind = await User.findOne({ email: email });
+    const userfind = await User.findOne({ email: email, user });
     const token = jwt.sign({ _id: userfind._id }, keysecret, {
       expiresIn: "1d",
     });
@@ -186,7 +90,6 @@ const passwordlink = async (req, res) => {
       });
     }
   } catch (error) {
-    res.status(401).json({ status: 401, message: "invalid user" });
     res.status(400).json({ error: error.message });
   }
 };

@@ -53,7 +53,7 @@ function Login() {
                   />
                 </div>
 
-                <div class="mb-3 w-75">
+                <div className="mb-3 w-75">
                   <label htmlFor="exampleInputPassword1" className="form-label">
                     Password
                   </label>
@@ -77,13 +77,15 @@ function Login() {
                   </label>
                 </div>
                 <NavLink to="/passwordChange">
-                  <a
-                    href="#"
-                    className="btn btn-link p-0"
-                    style={{ textDecoration: "none", marginLeft: "220px" }}
-                  >
-                    Forgot password?
-                  </a>
+                  <div>
+                    <button
+                      type="button"
+                      className="btn btn-link p-0"
+                      style={{ textDecoration: "none", marginLeft: "220px" }}
+                    >
+                      Forgot password?
+                    </button>
+                  </div>
                 </NavLink>
                 <button
                   type="submit"
