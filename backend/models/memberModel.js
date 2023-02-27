@@ -13,11 +13,12 @@ const userSchema = new Schema({
     type: String,
     required: true,
   },
-  firstname: {
+
+  firstName: {
     type: String,
     required: true,
   },
-  lastname: {
+  lastName: {
     type: String,
     required: true,
   },
@@ -47,12 +48,12 @@ const userSchema = new Schema({
 userSchema.statics.signup = async function (
   email,
   password,
-  firstname,
-  lastname,
+  firstName,
+  lastName,
   selectedJob
 ) {
   // validation
-  if (!email || !password || !firstname || !lastname || !selectedJob) {
+  if (!email || !password || !firstName || !lastName || !selectedJob) {
     throw Error("All fields must be filled");
   }
   if (!validator.isEmail(email)) {
@@ -74,8 +75,8 @@ userSchema.statics.signup = async function (
   const user = await this.create({
     email,
     password: hash,
-    firstname,
-    lastname,
+    firstName,
+    lastName,
     selectedJob,
   });
 

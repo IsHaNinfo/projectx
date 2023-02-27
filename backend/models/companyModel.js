@@ -25,6 +25,10 @@ const companySchema = new Schema({
     type: String,
     required: true,
   },
+  user_id: {
+    type: String,
+    required: true,
+  },
 });
 
 companySchema.statics.createcompany = async function (
@@ -32,7 +36,8 @@ companySchema.statics.createcompany = async function (
   companykey,
   contactnumber,
   companyaddress,
-  companyemail
+  companyemail,
+  user_id
 ) {
   if (
     !companyname ||
@@ -79,6 +84,7 @@ companySchema.statics.createcompany = async function (
     companyemail,
     contactnumber,
     companyaddress,
+    user_id,
   });
   return company;
 };

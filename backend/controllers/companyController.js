@@ -15,14 +15,16 @@ const createCompany = async (req, res) => {
   } = req.body;
 
   try {
+    const user_id = req.user._id;
     const company = await Company.createcompany(
       companyname,
       companykey,
       contactnumber,
       companyaddress,
-      companyemail
+      companyemail,
+      user_id
     );
-
+    const token = createToken(company._id);
     res.status(200).json({ company, companyname, token });
   } catch (error) {
     res.status(400).json({ error: error.message });

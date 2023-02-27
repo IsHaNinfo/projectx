@@ -37,10 +37,7 @@ function App() {
             path="/Methods"
             element={user ? <Methods /> : <Navigate to="/login" />}
           />
-          <Route
-            path="/EnterCompany"
-            element={user ? <EnterCompany /> : <Navigate to="/login" />}
-          />
+          <Route path="/EnterCompany" element={<EnterCompany />} />
           <Route path="/CreateCompany" element={<CreateCompany />} />
           <Route path="/CreateProject" element={<Createproject />} />
           <Route path="/Progress" element={<Progress />} />

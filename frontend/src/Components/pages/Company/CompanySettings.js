@@ -2,13 +2,16 @@ import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
+import { useNavigate } from "react-router-dom";
 
 const CompanySettings = () => {
   const [show, setShow] = useState(true);
   const [error, setError] = useState(null);
+  const history = useNavigate();
 
   const handleClose = () => {
     setShow(false);
+    history("/Company");
   };
 
   const handleSubmit = async () => {};

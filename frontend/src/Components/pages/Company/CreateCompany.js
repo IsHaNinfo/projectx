@@ -1,24 +1,56 @@
 import { NavLink } from "react-router-dom";
 import React, { useState } from "react";
-import useCreateCompany from "../../../hooks/useCreateCompany";
+import { useNavigate } from "react-router-dom";
+
+import { useCompanyContext } from "./../../../hooks/useCompanyContext";
+import { useAuthContext } from "./../../../hooks/useAuthContext";
 const CreateCompany = () => {
   const [companyname, setcompanyname] = useState("");
   const [companyemail, setcompanyemail] = useState("");
   const [companykey, setcompanykey] = useState("");
   const [contactnumber, setcontactnumber] = useState("");
   const [companyaddress, setcompanyaddress] = useState("");
-  const { createcompany, isLoading, error } = useCreateCompany();
-
+  const { user } = useAuthContext();
+  const { dispatch } = useCompanyContext();
+  const [error, setError] = useState(null);
+  const history = useNavigate();
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    await createcompany(
+    if (!user) {
+      setError("you must be logged in");
+      return;
+    }
+    const company = {
+      companyname,
       companyemail,
       companykey,
-      companyname,
       contactnumber,
-      companyaddress
-    );
+      companyaddress,
+    };
+    const response = await fetch("/api/company/createcompany", {
+      method: "POST",
+      body: JSON.stringify(company),
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${user.token}`,
+      },
+    });
+    const json = await response.json();
+
+    if (!response.ok) {
+      setError(json.error);
+    }
+    if (response.ok) {
+      history("/Dashboard");
+      setcompanyname("");
+      setcompanyemail("");
+      setcompanykey("");
+      setcontactnumber("");
+      setcompanyaddress("");
+      setError(null);
+      console.log("new company created", json);
+      dispatch({ type: "COMPANY_CREATE", payload: json });
+    }
   };
 
   return (
@@ -32,7 +64,7 @@ const CreateCompany = () => {
             </p>
             <h5 className="mb-4">OR</h5>
             <NavLink
-              to="/login"
+              to="/"
               className="btn btn-outline-light rounded-pill pb-2 w-50"
             >
               Login
@@ -111,11 +143,27 @@ const CreateCompany = () => {
                 <button
                   type="submit"
                   className="btn btn-outline-primary w-100 mt-4 rounded-pill"
-                  disabled={isLoading}
                 >
                   Submit
                 </button>
-                {error && <div className="error">{error}</div>}
+                {error && (
+                  <div
+                    className="error"
+                    style={{
+                      padding: " 10px",
+                      paddingLeft: "65px",
+                      background: " #ffefef",
+                      border: " 1px solid var(--error)",
+                      color: "red",
+                      borderRadius: "15px",
+                      margin: " 10px 0",
+                      marginRight: "55px",
+                      width: " 340px",
+                    }}
+                  >
+                    {error}
+                  </div>
+                )}
               </form>
             </div>
           </div>

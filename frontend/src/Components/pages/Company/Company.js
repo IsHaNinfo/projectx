@@ -47,11 +47,7 @@ const Company = () => {
               <h2 style={{ marginLeft: "650px" }}>{company.companyname}</h2>
             </div>
           )}
-          {projects && (
-            <div>
-              <h2 style={{ marginLeft: "650px" }}>{projects.projectname}</h2>
-            </div>
-          )}
+
           <div className="project-list">
             {projects &&
               projects.map((project) => (

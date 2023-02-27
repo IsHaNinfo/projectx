@@ -3,34 +3,36 @@ import ProgressBar from "react-bootstrap/ProgressBar";
 import Bar from "./Bar";
 import "./Circleprogress.css";
 import { useAuthContext } from "./../../../hooks/useAuthContext";
-
+import { useProjectContext } from "../../../hooks/useProjectContext";
 function CircleProgress() {
   const [percentage, setPercentage] = useState("");
   const { user } = useAuthContext();
-
-  const createDate = async () => {
-    const res = await fetch("/api/project/changepersentage", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        startDate: "2023-02-20",
-        endDate: "2023-02-25",
-      }),
-    });
-    const data = await res.json();
-    console.log(res);
-    if (res.status === 200) {
-      setPercentage(data.percentage);
-      console.log(data.percentage);
-      console.log(percentage);
-    }
-  };
-
+  const { projects, dispatch } = useProjectContext();
   useEffect(() => {
+    const createDate = async () => {
+      const res = await fetch("/api/project/changepersentage", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${user.token} `,
+        },
+        body: JSON.stringify({
+          startDate: "2023-02-20",
+          endDate: "2023-02-25",
+        }),
+      });
+      const data = await res.json();
+      console.log(res);
+      if (res.status === 200) {
+        setPercentage(data.percentage);
+        console.log(data.percentage);
+        console.log(percentage);
+      }
+    };
     if (user) {
       createDate();
     }
-  }, []);
+  }, [dispatch, user]);
   const now = 80;
 
   let variant;

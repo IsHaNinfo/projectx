@@ -7,8 +7,9 @@ export const companyReducer = (state, action) => {
     case "COMPANY_CREATE":
       return { company: action.payload };
     case "COMPANY_KEY":
+      return { company: [action.payload] };
+    case "SHOW_COMPANY":
       return { company: action.payload };
-
     default:
       return state;
   }

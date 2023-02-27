@@ -22,7 +22,7 @@ const project = async (req, res) => {
       user_id
     );
     const token = createToken(project._id);
-    res.status(200).json({ project, token, projectname: project.projectname });
+    res.status(200).json({ project, token });
   } catch (error) {
     res.status(400).json({ error: error.message });
   }

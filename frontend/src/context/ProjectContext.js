@@ -10,7 +10,7 @@ export const projectReducer = (state, action) => {
       };
     case "CREATE_PROJECT":
       return {
-        projects: [action.payload, ...state.projects],
+        projects: [action.payload],
       };
     default:
       return state;

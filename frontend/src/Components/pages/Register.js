@@ -5,11 +5,11 @@ import useSignup from "../../hooks/useSignup";
 import { Dropdown } from "react-bootstrap";
 
 const Register = () => {
-  const [firstname, setfirstname] = useState("");
-  const [lastname, setlastname] = useState("");
-  const [email, setemail] = useState("");
-  const [password, setpassword] = useState("");
-  const [confirmpassword, setconfirmpassword] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const options = ["SYSTEM ADMIN", "DEVELOPER", "TEAM LEAD", "PROJECT MANAGER"];
   const [selectedJob, setSelectedJob] = useState("");
   const { signup, isLoading, error } = useSignup();
@@ -20,8 +20,8 @@ const Register = () => {
     await signup(
       email,
       password,
-      firstname,
-      lastname,
+      firstName,
+      lastName,
 
       selectedJob
     );
@@ -61,8 +61,8 @@ const Register = () => {
                     type="text"
                     className="form-control"
                     id="firstname"
-                    onChange={(e) => setfirstname(e.target.value)}
-                    value={firstname}
+                    onChange={(e) => setFirstName(e.target.value)}
+                    value={firstName}
                   />
                 </div>
                 <div className="mb-3">
@@ -73,8 +73,8 @@ const Register = () => {
                     type="text"
                     className="form-control"
                     id="lastname"
-                    onChange={(e) => setlastname(e.target.value)}
-                    value={lastname}
+                    onChange={(e) => setLastName(e.target.value)}
+                    value={lastName}
                   />
                 </div>
                 <div className="mb-3">
@@ -86,7 +86,7 @@ const Register = () => {
                     className="form-control"
                     id="exampleInputEmail1"
                     aria-describedby="emailHelp"
-                    onChange={(e) => setemail(e.target.value)}
+                    onChange={(e) => setEmail(e.target.value)}
                     value={email}
                   />
                   <div id="emailHelp" className="form-text">
@@ -101,7 +101,7 @@ const Register = () => {
                     type="password"
                     className="form-control"
                     id="password"
-                    onChange={(e) => setpassword(e.target.value)}
+                    onChange={(e) => setPassword(e.target.value)}
                     value={password}
                   />
                 </div>
@@ -113,8 +113,8 @@ const Register = () => {
                     type="password"
                     className="form-control"
                     id="password"
-                    onChange={(e) => setconfirmpassword(e.target.value)}
-                    value={confirmpassword}
+                    onChange={(e) => setConfirmPassword(e.target.value)}
+                    value={confirmPassword}
                   />
                 </div>
 

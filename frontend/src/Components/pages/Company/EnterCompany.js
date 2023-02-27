@@ -1,15 +1,46 @@
 import React, { useState } from "react";
-
 import "./EnterCompany.css";
+import { useNavigate } from "react-router-dom";
+import { useCompanyContext } from "./../../../hooks/useCompanyContext";
+import { useAuthContext } from "./../../../hooks/useAuthContext";
 
-import useCompanykey from "../../../hooks/useCompanykey";
 function EnterCompany() {
   const [companykey, setCompanykey] = useState("");
-  const { checkcompany, isLoading, error } = useCompanykey();
+  const { user } = useAuthContext();
+  const { dispatch } = useCompanyContext();
+  const [error, setError] = useState(null);
+  const history = useNavigate();
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await checkcompany(companykey);
+    if (!user) {
+      setError("you must be logged in");
+      return;
+    }
+    const key = { companykey };
+    const response = await fetch("/api/company/checkcompany", {
+      method: "POST",
+      body: JSON.stringify(key),
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${user.token}`,
+      },
+    });
+    const json = await response.json();
+    if (!response.ok) {
+      setError(json.error);
+    }
+    if (response.ok) {
+      history("/Dashboard");
+
+      setCompanykey("");
+
+      setError(null);
+      console.log("you add new company", json);
+      dispatch({ type: "COMPANY_KEY", payload: json });
+    }
   };
+
   return (
     <div>
       <div className="container shadow my-5">
@@ -42,7 +73,6 @@ function EnterCompany() {
                 <button
                   type="submit"
                   className="btn btn-primary w-75  rounded-pill mt-3 h-25 p-20"
-                  disabled={isLoading}
                 >
                   Submit
                 </button>
@@ -53,36 +83,6 @@ function EnterCompany() {
         </div>
       </div>
     </div>
-
-    /*
-    <div className=" formain">
-      <div className="main-container">
-        <h1 className="mainc">Join company</h1>
-      </div>
-      <div className="formboxC">
-        <label>Enter Company key</label>
-        <input type="email" name="email" class="form-control"></input>
-      </div>
-
-      <submitPopup
-        class="btn btn-primary"
-        style={{
-          width: "380px",
-          height: "50px",
-          size: "20px",
-          top: " 60%",
-          position: "absolute",
-          marginLeft: "39%",
-        }}
-      >
-        Submit
-      </submitPopup>
-      <submitPopup />
-
-      <Link to="/Methods">
-        <p className="Methods">Back to Choose</p>
-      </Link>
-    </div>*/
   );
 }
 

@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { ToastContainer, toast } from "react-toastify";
 import "./passwordChange.css";
 import { NavLink } from "react-router-dom";
 const PasswordChange = () => {
